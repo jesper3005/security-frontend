@@ -6,9 +6,6 @@
 
 Template setup with Vuex
 
-Todo: 
-- Add scss.. 
-
 ## Build Setup
 
 ``` bash
