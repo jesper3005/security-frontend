@@ -1,11 +1,11 @@
 <script>
-import NavigationBar from './components/Nav/Nav'
+import MainNavBar from './components/Nav/MainNavBar'
 import Footer from './components/Footer/Footer'
 
 export default {
   name: 'App',
   components: {
-    NavigationBar,
+    MainNavBar,
     Footer
   }
 }
@@ -13,7 +13,7 @@ export default {
 
 <template>
   <div id="app">
-    <navigation-bar/>
+    <main-nav-bar/>
     <router-view/>
     <Footer/>
   </div>

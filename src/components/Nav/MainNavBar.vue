@@ -1,6 +1,6 @@
 <script>
 export default {
-  name: 'NavigationBar',
+  name: 'MainNavBar'
 }
 </script>
 
@@ -9,23 +9,22 @@ export default {
     <ul class="navbar-content">
       <!-- Left content -->
 
-      <li></li>
+      <li>
+        <img src="@/assets/TTT_logo.png" height="100" width="100"/>
+      </li>
 
       <!-- Centered content -->
       <li>
         <router-link v-bind:to="'/'" :key="1">HJEM</router-link>
       </li>
       <li>
-        <router-link v-bind:to="'/'" :key="2">KONTAKT</router-link>
+        <router-link v-bind:to="'/hvem-er-vi'" :key="2">HVEM ER VI</router-link>
       </li>
       <li>
-        <img src="@/assets/TTT_logo.png" height="100" width="100"/>
+        <router-link v-bind:to="'/profile'" :key="3">BRUGER PROFIL</router-link>
       </li>
       <li>
-        <router-link v-bind:to="'/'" :key="3">MIN SIDE</router-link>
-      </li>
-      <li>
-        <router-link v-bind:to="'/'" :key="4">LOG IND</router-link>
+        <router-link v-bind:to="'/login'" :key="4">LOG IND</router-link>
       </li>
     </ul>
   </div>
