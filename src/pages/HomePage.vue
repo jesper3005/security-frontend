@@ -1,5 +1,5 @@
 <script>
-import Welcome from '@/components/Welcome/Welcome'
+import Welcome from '../components/Welcome/Welcome'
 
 export default {
   name: 'HomePage',
