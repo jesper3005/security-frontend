@@ -63,6 +63,7 @@ export default {
     text-decoration: none;
     padding: 10px 25px;
     font-weight: bold;
+    outline: 0 none !important;
   }
   svg {
     fill: #9CBEFF;
