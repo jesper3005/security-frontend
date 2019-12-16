@@ -10,6 +10,7 @@ export default {
       personalID: this.personalID,
       email: this.email,
       name: this.name,
+      FB: undefined,
     }
   },
   beforeMount() {
