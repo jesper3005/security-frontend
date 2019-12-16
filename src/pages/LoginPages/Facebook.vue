@@ -48,7 +48,7 @@ export default {
   <div>
     <h1>Facebook</h1>
     <facebook-login
-      appId=''
+      appId='598901520874468'
       @login="onLogin"
       @logout="onLogout"
       @sdk-loaded="sdkLoaded"
