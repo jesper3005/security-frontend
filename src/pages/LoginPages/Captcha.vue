@@ -1,5 +1,6 @@
 <script>
 import VueRecaptcha from 'vue-recaptcha'
+import recaptchaValidation from '../../services/recaptcha-service'
 
 export default {
   name: 'Captcha',
@@ -10,6 +11,8 @@ export default {
     },
     onVerify: function (response) {
       console.log('Verify: ' + response)
+
+      recaptchaValidation.validation(response)
       alert("Verifyed, but not really")
     },
     onExpired: function () {
