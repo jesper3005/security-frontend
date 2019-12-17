@@ -12,6 +12,9 @@ export default {
   methods: {
     accept() {
       this.notaccepted = false
+    },
+    deny() {
+      window.location = 'https://google.com';
     }
   }
 }
@@ -19,7 +22,10 @@ export default {
 
 <template>
   <cookie-law theme="dark-lime" v-show="notaccepted">
-    Our website collects data when you register and login <button @click="accept">Accept</button><router-link to="/legal-notes">Click here for more info</router-link>
+    Our website collects data when you register and login 
+    <button @click="accept">Accept</button>
+    <button @click="deny">Deny</button>
+    <router-link to="/legal-notes">Click here for more info</router-link>
   </cookie-law>
 </template>
 
@@ -36,5 +42,16 @@ export default {
   }
   a {
     color: white;
+  }
+  button {
+    display: block;
+    margin: auto;
+    color: grey;
+    background-color: white;
+    height: 40px;
+    width: 18%;
+    border: 1px solid rgba(214, 214, 214, 0.664);
+    box-shadow: 1px 1px rgba(228, 228, 228, 0.603);
+    border-radius: 40px;
   }
 </style>
