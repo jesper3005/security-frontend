@@ -1,13 +1,26 @@
 <script>
+import CookieLaw from 'vue-cookie-law'
+
 export default {
-  name: 'Footer'
+  name: 'Footer',
+  components: { CookieLaw },
+  data () {
+    return {
+      notaccepted: true
+    }
+  },
+  methods: {
+    accept() {
+      this.notaccepted = false
+    }
+  }
 }
 </script>
 
 <template>
-  <div class="footer">
-    <p>Denne webside opsamler ingen data og er kun et led i et eksamens projekt</p>
-  </div>
+  <cookie-law theme="dark-lime" v-show="notaccepted">
+    Our website collects data when you register and login <button @click="accept">Accept</button><router-link to="/legal-notes">Click here for more info</router-link>
+  </cookie-law>
 </template>
 
 <style scoped>
@@ -19,6 +32,9 @@ export default {
   }
   h1 {
     padding: 5%;
+    color: white;
+  }
+  a {
     color: white;
   }
 </style>

@@ -7,6 +7,7 @@ import Google from '@/pages/LoginPages/Google'
 import Captcha from '@/pages/LoginPages/Captcha'
 import TTTLogin from '@/pages/LoginPages/TTTLogin'
 import Profile from '@/pages/Profile'
+import LegalNotes from '@/pages/LegalNotes'
 
 Vue.use(Router)
 
@@ -35,6 +36,12 @@ export default new Router({
         { path: 'captcha', component: Captcha },
         { path: 'our-login', component: TTTLogin }
       ]
+    },
+    {
+      path: '/legal-notes',
+      name: 'LegalNotes',
+      component: LegalNotes,
+      exact: true,
     }
   ]
 })
