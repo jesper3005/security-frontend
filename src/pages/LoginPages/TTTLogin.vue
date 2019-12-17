@@ -1,29 +1,28 @@
 <script>
 import VueRecaptcha from "vue-recaptcha";
+import { mapActions, mapState } from 'vuex'
 
 export default {
   name: "TTTLogin",
   components: { VueRecaptcha },
   data() {
     return {
-      username: "",
+      email: "",
       password: "",
       submitted: false
     };
   },
+  computed: {
+    ...mapState(['account'])
+  },
   methods: {
-    onSubmit: function() {
-      this.$refs.invisibleRecaptcha.execute();
-    },
-    onVerify: function(response) {
-      console.log("Verify: " + response);
-      alert("Verifyed, but not really");
-    },
-    onExpired: function() {
-      console.log("Expired");
-    },
-    resetRecaptcha() {
-      this.$refs.recaptcha.reset(); // Direct call reset method
+      ...mapActions("account", ["login", "logout"]),
+      handleSubmit(e) {
+      this.submitted = true;
+      const { email, password } = this;
+      if (email && password) {
+        this.login({ email, password });
+      }
     }
   }
 };
@@ -31,15 +30,17 @@ export default {
 
 <template>
   <div class="loginContainer">
-    <form>
+    <div v-show="submitted && !email" class="invalid-feedback">Email is required</div>
+    <form @submit.prevent="handleSubmit">
       <input
         type="text"
-        v-model="username"
-        name="username"
-        :class="{ 'isInvalid': submitted && !username}"
-        placeholder="Account name..."
-        class="username"
+        v-model="email"
+        name="email"
+        :class="{ 'isInvalid': submitted && !email}"
+        placeholder="Email..."
+        class="email"
       />
+      <div v-show="submitted && !password" class="invalid-feedback">Password is required</div>
       <input
         type="password"
         v-model="password"
@@ -62,7 +63,7 @@ export default {
     margin-top: 10%;
   }
 
-  .username {
+  .email {
     display: block;
     margin: auto;
     background-color: white;
