@@ -1,8 +1,8 @@
 export function authHeader() {
-  let user = JSON.parse(localStorage.getItem('user'));
+  let data = JSON.parse(localStorage.getItem('data'));
 
-  if(user && user.token) {
-      return `${user.token}`
+  if(data && data.token) {
+      return `${data.token}`
   } else {
       return []
   }
