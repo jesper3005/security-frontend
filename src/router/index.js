@@ -8,10 +8,11 @@ import Captcha from '@/pages/LoginPages/Captcha'
 import TTTLogin from '@/pages/LoginPages/TTTLogin'
 import Profile from '@/pages/Profile'
 import LegalNotes from '@/pages/LegalNotes'
+import Verfication from '@/pages/LoginPages/Verification'
 
 Vue.use(Router)
 
-export default new Router({
+export const router = new Router({
   mode: 'history',
   routes: [
     {
@@ -42,6 +43,29 @@ export default new Router({
       name: 'LegalNotes',
       component: LegalNotes,
       exact: true,
+    },
+    {
+      path: '/verification',
+      name: 'Verification',
+      component: Verfication,
+      exact: true,
     }
   ]
+})
+
+/**
+ * Returns user to login if entering restriced pages
+ * 
+ * 
+ */
+router.beforeEach((to, from, next) => {
+  const publicPages = ['/', '/login', '/login/facebook', '/login/google', '/login/captcha', '/login/our-login', '/register', '/topic/:proLangName/:proLangId'];
+  const authRequired = !publicPages.includes(to.path);
+  const loggedIn = localStorage.getItem('data');
+
+  if (authRequired && !loggedIn) {
+    return next('/login');
+  }
+
+  next();
 })
