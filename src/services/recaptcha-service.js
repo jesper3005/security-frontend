@@ -25,21 +25,21 @@ function validation(token) {
   //     }
   //   })
   //   .then(err => console.log(err.message))
-  const requestOption = {
+  const requestOptions = {
     method: 'POST',
-    headers: { 'Content-Type': 'application/json'},
+    headers: { 'Content-Type': 'application/json' },
     body: JSON.stringify({ token })
   }
   return fetch(URL, requestOptions)
-      .then(handleResponse)
-      .then(data => {
-          if(data.length == 0) {
-              alert("You shall not pass!")
-              window.location = 'https://google.com'
-          }
-          else {
-            alert("you're a good guy! Please proceed")
-          }
-      })
-      .then(err=>console.log(`Shieet` + err))
+    .then(handleResponse)
+    .then(data => {
+      if (data.length == 0) {
+        alert("You shall not pass!")
+        window.location = 'https://google.com'
+      }
+      else {
+        alert("you're a good guy! Please proceed")
+      }
+    })
+    .then(err => console.log(`Shieet: ` + err))
 }
