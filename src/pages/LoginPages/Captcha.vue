@@ -1,17 +1,19 @@
 <script>
 import VueRecaptcha from 'vue-recaptcha'
+import { mapActions } from 'vuex'
 import { captchaValidation } from '../../services/recaptcha-service'
 
 export default {
   name: 'Captcha',
   components: { VueRecaptcha },
   methods: {
+    ...mapActions('recaptcha', ['validate']),
     onSubmit: function () {
       this.$refs.invisibleRecaptcha.execute()
     },
     onVerify: function (response) {
       console.log('Verify: ' + response)
-      captchaValidation.validation(response)
+      this.validate(response.verify)
     },
     onExpired: function () {
       console.log('Expired')

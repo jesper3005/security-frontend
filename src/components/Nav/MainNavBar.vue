@@ -1,6 +1,22 @@
 <script>
+import { router } from '../../router'
+
 export default {
-  name: 'MainNavBar'
+  name: 'MainNavBar',
+  data () {
+    return {
+      isVerified: localStorage.getItem('verified'),
+      isLoggedIn: localStorage.getItem('data')
+    }
+  },
+  methods: {
+    logout() {
+      localStorage.removeItem("data");
+      localStorage.setItem('verified', false)
+      router.push('/');
+      this.$router.go(0);
+    }
+  }
 }
 </script>
 
@@ -21,10 +37,13 @@ export default {
         <router-link v-bind:to="'/hvem-er-vi'" :key="2">HVEM ER VI</router-link>
       </li>
       <li>
-        <router-link v-bind:to="'/profile'" :key="3">BRUGER PROFIL</router-link>
+        <router-link v-bind:to="'/profile'" :key="3" v-if="isVerified && isLoggedIn">BRUGER PROFIL</router-link>
       </li>
       <li>
-        <router-link v-bind:to="'/login'" :key="4">LOG IND</router-link>
+        <router-link v-bind:to="'/login'" :key="4" v-if="!isLoggedIn | !isVerified">LOG IND</router-link>
+      </li>
+      <li v-if="isLoggedIn && isVerified">
+        <button class="logout" v-on:click="logout">Log out</button>
       </li>
     </ul>
   </div>
@@ -68,4 +87,19 @@ export default {
   svg {
     fill: #9CBEFF;
   }
+
+  .logout {
+    display: block;
+    margin: auto;
+    background-color: rgb(56, 56, 56);
+    height: 45px;
+    width: 200px;
+    border: 1px solid rgba(214, 214, 214, 0.664);
+    box-shadow: 1px 1px rgba(228, 228, 228, 0.603);
+    border-radius: 40px;
+    -moz-appearance:textfield;
+    text-align: center;
+    font-size: 20px;
+    color: white;
+}
 </style>
