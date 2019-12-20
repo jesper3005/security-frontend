@@ -1,28 +1,30 @@
 <script>
-import VueRecaptcha from 'vue-recaptcha'
-import { captchaValidation } from '../../services/recaptcha-service'
+import VueRecaptcha from "vue-recaptcha";
+import { mapActions } from "vuex";
+import { captchaValidation } from "../../services/recaptcha-service";
+import { recaptcha } from "../../store/recaptcha/recaptcha";
 
 export default {
-  name: 'Captcha',
+  name: "Captcha",
   components: { VueRecaptcha },
   methods: {
-    onSubmit: function () {
-      this.$refs.invisibleRecaptcha.execute()
+    ...mapActions("recaptcha", ["validate"]),
+    onSubmit: function() {
+      this.$refs.invisibleRecaptcha.execute();
     },
     onVerify: function (response) {
       console.log('Verify: ' + response)
       console.log("This token has not been verified")
       captchaValidation.validation(response)
     },
-    onExpired: function () {
-      console.log('Expired')
+    onExpired: function() {
+      console.log("Expired");
     },
-    resetRecaptcha () {
-      this.$refs.recaptcha.reset() // Direct call reset method
-    },
-
-}
-}
+    resetRecaptcha() {
+      this.$refs.recaptcha.reset(); // Direct call reset method
+    }
+  }
+};
 </script>
 
 <template>
@@ -33,7 +35,7 @@ export default {
         :loadRecaptchaScript="true"
         ref="recaptcha"
         @verify="onVerify"
-        @expired="onExpired" 
+        @expired="onExpired"
         sitekey="6LduDsgUAAAAADAOldsQwNGYByrS77swxFdnKmbc"
       >
         <button>Click me</button>

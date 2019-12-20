@@ -2,7 +2,8 @@ import { router } from '../router'
 
 export const userService = {
   login,
-  logout
+  logout,
+  getUserInformation,
 }
 
 function login(email, password, ip) {
@@ -55,4 +56,12 @@ function handleResponse(response) {
 
 }
 
+function getUserInformation(email, token) {
+  const requestOptions = {
+    method: 'GET',
+    headers: { 'Content-Type': 'application/json'},
+    body: JSON.stringify({ email, token })
+  };
 
+  return fetch(URL, requestOptions)
+}

@@ -36,6 +36,20 @@ const actions = {
     logout({ commit }) {
         userService.logout();
         commit('logout')
+    },
+
+    async getUserInformation(email, token) {
+        try {
+            const res = await userService.getUserInformation(email, token);
+            if ( res.status === 200 ) {
+                const data = await res.json();
+                return data;
+            } else {
+                console.log("There was no data")
+            }
+        } catch (e) {
+            console.log('Something went wrong ' + e.message)
+        }
     }
 };
 

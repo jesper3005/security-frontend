@@ -1,7 +1,30 @@
 <script>
+import { router } from '../../router'
+
 export default {
-    name: 'Verification'
-}
+  name: "Verification",
+  data() {
+    return {
+        verificationCode: ""
+    }
+  },
+  methods: {
+    onSubmit: function() {
+      let data = JSON.parse(localStorage.getItem('data'));
+      if(data.code == this.verificationCode) {
+          localStorage.setItem('verified', true)
+          router.push('/profile');
+          this.$router.go(0);
+      } else {
+          localStorage.setItem('verified', false)
+          localStorage.removeItem('data')
+          router.push('/login/our-login');
+          this.$router.go(0);
+      }
+      alert("Hello")
+    }
+  }
+};
 </script>
 
 <template>

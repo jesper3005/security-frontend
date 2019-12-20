@@ -59,11 +59,12 @@ export const router = new Router({
  * 
  */
 router.beforeEach((to, from, next) => {
-  const publicPages = ['/', '/login', '/login/facebook', '/login/google', '/login/captcha', '/login/our-login', '/register', '/topic/:proLangName/:proLangId'];
+  const publicPages = ['/', '/login', '/login/facebook', '/login/google', '/login/captcha', '/login/our-login'];
   const authRequired = !publicPages.includes(to.path);
-  const loggedIn = localStorage.getItem('data');
+  const isLoggedIn = localStorage.getItem('data')
+  const verified = localStorage.getItem('verified')
 
-  if (authRequired && !loggedIn) {
+  if (authRequired && !verified && !isLoggedIn) {
     return next('/login');
   }
 

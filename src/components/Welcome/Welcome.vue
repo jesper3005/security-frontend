@@ -1,7 +1,7 @@
 <template>
   <div class="hello">
     <h1>{{ msg }}</h1>
-    <h2>Created by Jesper Christensen <small><small><small><small>& also Michael Due</small></small></small></small></h2>
+    <h2>Created by Jesper Christensen and Michael Due Pedersen</h2>
   </div>
 </template>
 
