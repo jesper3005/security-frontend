@@ -24,6 +24,15 @@ const actions = {
             );
     },
 
+    passwordValidation(password) {
+        var strongRegex = new RegExp("^(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.*[!@#\$%\^&\*])(?=.{8,})");
+        if (password === strongRegex) {
+            return password
+        } else {
+            return "Insufficent password, must contain 1 uppercase, 1 number and 1 special character"
+        }
+    }
+
     logout({ commit }) {
         userService.logout();
         commit('logout')

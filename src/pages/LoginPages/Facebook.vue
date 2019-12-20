@@ -18,7 +18,7 @@ export default {
   },
   methods: {
     getUserData() {
-      this.FB.api('/me', 'GET', { fields: 'id,name,email'},
+      this.FB.api('/me', 'GET', { fields: 'id, name, email'},
         userInformation => {
           console.warn("Getting data from facebook", userInformation)
           this.personalID = userInformation.id;
@@ -48,7 +48,7 @@ export default {
   <div>
     <h1>Facebook</h1>
     <facebook-login
-      appId='598901520874468'
+      appId=''
       @login="onLogin"
       @logout="onLogout"
       @sdk-loaded="sdkLoaded"

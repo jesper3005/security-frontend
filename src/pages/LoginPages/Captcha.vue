@@ -11,6 +11,7 @@ export default {
     },
     onVerify: function (response) {
       console.log('Verify: ' + response)
+      console.log("This token has not been verified")
       captchaValidation.validation(response)
     },
     onExpired: function () {
